@@ -15,10 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 const port = 5000;
 
 app.use('/', routes);
-
-//connect to DB 
 db.connect();
-
 
 app.listen(port, () => {
     console.log('Server listening on port ' + port);

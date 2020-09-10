@@ -7,8 +7,8 @@ const Customer = new Schema({
     sodt: {type: String, maxLength: 255},
     email: {type: String,  maxLength: 255},
     diachi: {type: String,  maxLength: 255},
-    mota: {type: String,  maxLength: 255},
-    lienlac: {type: String,  maxLength: 255},
+    tieude: {type: String,  maxLength: 255},
+    noidung: {type: String,  maxLength: 255},
     createdAt: {type: Date, default: Date.now},
 });
 
