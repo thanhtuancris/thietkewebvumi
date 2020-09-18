@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const Customer = new Schema({
+    id_template: mongoose.Types.ObjectId,
     hoten: {type: String, maxLength: 255},
     sodt: {type: String, maxLength: 255},
     email: {type: String,  maxLength: 255},
