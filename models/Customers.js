@@ -13,4 +13,5 @@ const Customer = new Schema({
     createdAt: {type: Date, default: Date.now},
 });
 
+
 module.exports = mongoose.model('Customer', Customer);
