@@ -6393,12 +6393,12 @@
                             <div class="items animated zoomIn">
                                 <div class="project-desc">
                                     <div class="project-img">
-                                        <a href="/<%- Template._id%>" target="_blank">
-                                            <img src="<%- Template.Image %>" alt="Polikal - Political Candidate & Party Theme" />
+                                        <a href="/detail/<%- Template._id%>" target="_blank">
+                                            <img src="<%- Template.Image %>" alt="<%-Template.Title %>" />
                                         </a>
                                     </div>
                                     <div class="project-htitle">
-                                        <h3><a href="/<%- Template._id %>" target="_blank"><%- Template.Title %></a></h3>
+                                        <h3><a href="/detail/<%- Template._id %>" target="_blank"><%- Template.Title %></a></h3>
                                     </div>
                                 </div>
                             </div>
@@ -6414,14 +6414,51 @@
                         </div>
                     </div>
                     <div class="t-center">
+
+
+                        <% if (totalPage > 0) { %>
+                            <ul class="pagination">
+                
+                               <!-- first  -->
+                                <% if(currentPage == 1){ %>
+                                    <li class="disabled"><a>First</a></li>
+                               <% }else{ %>
+                                <li><a href="/home/1">First</a></li>
+                              <% } %>
+                
+                              <!-- page  -->
+                              <% var i = (Number(currentPage) > 2 ? Number(currentPage) - 1 : 1) %>
+                              <% if (i !== 1) { %>
+                                <li class="disabled"><a>...</a></li>
+                            <% } %>
+                            <% for (; i <= (Number(currentPage) + 2) && i <= totalPage; i++) { %>
+                                <% if (i == currentPage) { %>
+                                    <!-- <li class="active"><a><%= i %></a></li> -->
+                                    <li class="page-item"><a class="page-link"><%= i %></a></li>
+                                <% } else { %>
+                                    <li><a href="/home/<%= i %>"><%= i %></a></li>
+                                <% } %>
+                                <% if (i == Number(currentPage) + 4 && i < totalPage) { %>
+                                    <li class="disabled"><a>...</a></li>
+                                <% } %>
+                            <% } %>
+                
+                            <!-- last   -->
+                            <% if (currentPage == totalPage) { %>
+                                <li class="disabled"><a>Last</a></li>
+                            <% } else { %>
+                                <li><a href="/home/<%= totalPage %>">Last</a></li>
+                            <% } %> 
+                                </ul>
+                             <% } %>
     
-                   <ul class="pagination">
-                    <li><a class="pagecurrent">1</a></li>
-                     <li><a href='thiet-ke-website-doanh-nghiep.html&pageNum=2#pages' class="pagelink">2</a></li> 
-                     <li><a href='thiet-ke-website-doanh-nghiep.html&pageNum=3#pages' class="pagelink">3</a></li>
-                      <li><a href='thiet-ke-website-doanh-nghiep.html&pageNum=2#pages' class="pagelink">»</a></li> 
-                      <li> <a href='thiet-ke-website-doanh-nghiep.html&pageNum=60#pages' class="pagelast">Last</a></li>
-                        </ul>
+                        <!-- <ul class="pagination">
+                            <li><a class="pagecurrent">1</a></li>
+                            <li><a href='thiet-ke-website-doanh-nghiep.html&pageNum=2#pages' class="pagelink">2</a></li> 
+                            <li><a href='thiet-ke-website-doanh-nghiep.html&pageNum=3#pages' class="pagelink">3</a></li>
+                            <li><a href='thiet-ke-website-doanh-nghiep.html&pageNum=2#pages' class="pagelink">»</a></li> 
+                            <li> <a href='thiet-ke-website-doanh-nghiep.html&pageNum=60#pages' class="pagelast">Last</a></li>
+                        </ul> -->
                     </div>
                 </div>
             </section>

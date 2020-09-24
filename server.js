@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const routes = require('./routes/r_home');
 const db = require('./config/db');
 const app = express();
-// const xssFilters = require('xss-filters');
 const helmet = require('helmet');
 
 app.use(express.static(__dirname + 'public'));

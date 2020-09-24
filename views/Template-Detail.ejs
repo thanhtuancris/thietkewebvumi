@@ -215,17 +215,17 @@ Hotline: <b class="cl-red">0708973379</b> - Email: <a href="/cdn-cgi/l/email-pro
 </div>
 </div>
 </header>
-<section id="nav-bar" class="menu-top clearfix">
+<!-- <section id="nav-bar" class="menu-top clearfix">
 <div class="container">
 <ul id="menu" class="nav-top">
 <li class="dropdown "><a href="trang-chu/">Trang chủ</a></li><li class="dropdown "><a href="gioi-thieu/">Giới thiệu</a></li><li class="p-relative "><a href="ten-mien/" class="dropdown-toggle" data-toggle="dropdown"> Tên miền <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="bang-gia-ten-mien-quoc-te/">Bảng giá tên miền quốc tế</a><li><a href="bang-gia-ten-mien-viet-nam/">Bảng giá tên miền Việt Nam</a></ul></li><li class="p-relative "><a href="hosting/" class="dropdown-toggle" data-toggle="dropdown"> Hosting <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="bang-gia-hosting/">Bảng giá Hosting</a><li><a href="hosting-chat-luong-cao/">Hosting chất lượng cao</a><li><a href="super-host/">Super Host</a><li><a href="cac-goi-web-hosting/">Các gói web hosting</a></ul></li><li class="dropdown "><a href="email-server/">Email server</a></li><li class="p-relative active"><a href="thiet-ke-website/" class="dropdown-toggle" data-toggle="dropdown"> Thiết kế website <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="thiet-ke-website-doanh-nghiep/">Thiết kế website doanh nghiệp</a><li><a href="thiet-ke-website-ban-hang/">Thiết kế website bán hàng</a></ul></li><li class="dropdown "><a href="lien-he/">Liên hệ</a></li>
 </ul>
 </div>
-</section>
+</section> -->
 <section id="content">
 <div class="container">
 <div class="breadcumb mt-10 mb-20"><ul id="breadcrumb">
-<li><a href="">Trang chủ</a></li>
+<li><a href="home">Trang chủ</a></li>
 <li><a href="thiet-ke-website.html">Đặt thiết kế website</a></li>
 </ul></div>
 <div class="title bx-border pd-0 mg-0 bg-white w-100">
@@ -234,22 +234,25 @@ Hotline: <b class="cl-red">0708973379</b> - Email: <a href="/cdn-cgi/l/email-pro
 </div>
 <div class="content">
 <div class="detail">
-<h3 class="t-center">Mẫu giao diện "Polikal - Political Candidate & Party Theme"</h3>
+<h3 class="t-center"><%- danhsach.Title %></h3>
 </div>
 </div>
 <div class="content mt-20 mb-20 clearfix">
 <div class="box-contact">
 <div class="contact-right w-49 bx-border">
 <div id="map-content">
-<a href="https://polikal.progressionstudios.com" title="Polikal - Political Candidate & Party Theme" target="_blank" rel="nofollow"><img src="https://s3.envato.com/files/303038076/Screenshots/1-Polikol-Preview.__large_preview.jpg" alt="Polikal - Political Candidate & Party Theme"></a>
+<a href="<%- danhsach.demo %>" title="<%- danhsach.Title%>" target="_blank" rel="nofollow"><img src="<%- danhsach.Image%>" alt="<%- danhsach.Title%>"></a>
 </div>
 <div class="row-contact" style="margin-top: 20px;">
-<a href="https://polikal.progressionstudios.com" title="Polikal - Political Candidate & Party Theme" class="button_demo" target="_blank" rel="nofollow">Xem demo</a>
+<a href="<%- danhsach.demo %>" title="<%- danhsach.Title%>" class="button_demo" target="_blank" rel="nofollow">Xem demo</a>
 </div>
 </div>
 <div class="contact-left w-49 bgactive bx-border">
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<form id="form1" name="form1" method="post" action="./" onsubmit="return checkInp()">
+
+
+
+<form id="form1" name="form1" method="post" action="../">
     <input type="hidden" name="id_template" value="<%- danhsach._id%>">
 
 <div class="w-100 f-left row-contact mb-10">
@@ -260,7 +263,7 @@ Hotline: <b class="cl-red">0708973379</b> - Email: <a href="/cdn-cgi/l/email-pro
 
 
 <div class="w-49 f-left row-contact mb-10">
-    <input name="dienthoai" type="text" class="input" id="dienthoai" size="50" value="" placeholder="Nhập điện thoại của bạn..." required/>
+    <input name="sodt" type="text" class="input" id="sodt" size="50" value="" placeholder="Nhập điện thoại của bạn..." required/>
     <p class="error-text cl-red"></p>
  
 </div>
@@ -296,7 +299,7 @@ Hotline: <b class="cl-red">0708973379</b> - Email: <a href="/cdn-cgi/l/email-pro
     <p class="error-text cl-red"></p>
 </div>
 <div class="row-contact">
-    <input class="button bg-primary cl-white t-uppercase" type="submit" id="btn-submit-contact" value="Gửi yêu cầu" name="submitbt" />
+    <input class="button bg-primary cl-white t-uppercase" type="submit" id="btn-submit-contact" value="Gửi yêu cầu" name="submitbt"/>
 </div>
 </form>
 </div>
@@ -440,19 +443,24 @@ Hotline: <b class="cl-red">0708973379</b> - Email: <a href="/cdn-cgi/l/email-pro
 <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
 <script src="dist/xss-filters.min.js"></script>
 
-<script type="text/javascript">
-    function checkInp(){
-        var x=document.forms["form1"]["dienthoai"].value;
-        var regex=/^[0-9]+$/;
-        if (x.match(regex)) {
-            alert("Must input numbers");
-            return false;
-        }
-    }
-
-
-
-</script>
+<!-- <script type="text/javascript">
+    function allnumericplusminus(inputtxt)
+   {
+      var numbers = /^[-+]?[0-9]+$/;
+      if(inputtxt.value.match(numbers))
+      {
+    //   alert('Correct...Try another');
+      document.form1.sodt.focus();
+      return true;
+      }
+      else
+      {
+      alert('Bạn phải nhập số');
+      document.form1.sodt.focus();
+      return false;
+      }
+   }
+</script> -->
 
 </body>
 </html>

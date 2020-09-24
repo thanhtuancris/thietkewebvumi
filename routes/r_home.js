@@ -3,39 +3,37 @@ const router = express.Router();
 const Customer = require('../models/Customers');
 const Template = require('../models/Template');
 const xss = require('xss');
+const { check, validationResult } = require('express-validator');
 
-router.get('/', (req, res) => {
-
-    // const perPage = 13;
-    //         const page = req.params.page;
-    //         const skip = (page - 1)*perPage;
-    //         const findTemplate = await Template.find().sort({Title: '-1'}).skip(skip).limit(perPage);
-    //         const totalCustomer = await Customer.count();
-    //         res.render('home', {
-    //             // trang: "list",
-    //             danhsach: findTemplate,
-    //             currentPage: page,
-    //             totalPage: Math.ceil(totalCustomer / perPage),
-    //             numOfResults: totalCustomer
-    //             });
-
-//[[:punct:]]
-
-    Template.find({}, function (err,data) {
-        if(err) {
-            res.json({
-                status: "error",
-                message: err
-            });
-        }else{
-            res.render('home', {danhsach: data});
-        }
+router.get('/home', async (req, res) => {
+    const perPage = 23;
+    const page = req.params.page || 1;
+    const skip = (perPage * page) - perPage;
+    const findTemplate = await Template.find().sort({Title: '1'}).skip(skip).limit(perPage);
+    const totalTemplate = await Template.count();
+    res.render('home', {
+        danhsach: findTemplate,
+        currentPage: page,
+        totalPage: Math.ceil(totalTemplate / perPage),
+        numOfResults: totalTemplate
     });
-    
+});
+router.get('/home/:page', async (req, res) => {
+    const perPage = 23;
+    const page = req.params.page || 1;
+    const skip = (perPage * page) - perPage;
+    const findTemplate = await Template.find().sort({Title: '1'}).skip(skip).limit(perPage);
+    const totalTemplate = await Template.count();
+    res.render('home', {
+        danhsach: findTemplate,
+        currentPage: page,
+        totalPage: Math.ceil(totalTemplate / perPage),
+        numOfResults: totalTemplate
+    });
 });
 
 
-router.get('/:id', (req, res) => {
+router.get('/detail/:id', (req, res) => {
     Template.findOne({_id: req.params.id}, function (err, data){   
         if(err){
             res.json({
@@ -48,13 +46,21 @@ router.get('/:id', (req, res) => {
     })
 })
 
-router.post('/', async (req, res) => {
+router.post('/', [ 
+    check('hoten').isLength({ min: 3 }),
+    check('email').isEmail(),
+    check('sodt').isNumeric({min: 8})
+    ], async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() })
+          }
             const regsc = /script|html/ig;
             let hoten = req.body.hoten;
             hoten = hoten.replace(/[^\w\s]/gi,"");
             hoten = hoten.replace(regsc,"");
 
-            let sodt = req.body.dienthoai;
+            let sodt = req.body.sodt;
             sodt = sodt.replace(/[^\w\s]/gi,"");
             sodt = sodt.replace(regsc,"");
 
