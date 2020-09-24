@@ -65,7 +65,7 @@ router.post('/', [
             sodt = sodt.replace(regsc,"");
 
             let email = req.body.email;
-            email = email.replace(/[^\w\s]/gi,"");
+            // email = email.replace(/[^\w\s]/gi,"");
             email = email.replace(regsc,"");
 
             let diachi = req.body.diachi;
